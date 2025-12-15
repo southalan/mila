@@ -1,0 +1,176 @@
+{
+    "@odata.context": "https://graph.microsoft.com/beta/$metadata#security/rules/detectionRules",
+    "@microsoft.graph.tips": "Use $select to choose only the properties your app needs, as this can lead to performance improvements. For example: GET security/rules/detectionRules?$select=detectionAction,detectorId",
+    "value": [
+        {
+            "detectorId": "85b4983d-a545-5efe-9379-8714b7e502c2",
+            "id": "8138",
+            "displayName": "Wscript activity observed",
+            "isEnabled": false,
+            "createdBy": "southalan@contoso.com",
+            "createdDateTime": "2025-10-07T13:41:08.0108919Z",
+            "lastModifiedDateTime": "2025-10-09T12:00:01.0546632Z",
+            "lastModifiedBy": "southalan@contoso.com",
+            "queryCondition": {
+                "queryText": "DeviceProcessEvents\r\n| where ActionType has_any (\"ProcessCreated\")\r\n| where ProcessCommandLine has_any (\"wscript\") or InitiatingProcessCommandLine has_any (\"wscript.exe\")",
+                "lastModifiedDateTime": "2025-12-09T12:00:01.0661186Z"
+            },
+            "schedule": {
+                "period": "0",
+                "nextRunDateTime": "2025-10-07T13:41:08.1366667Z"
+            },
+            "lastRunDetails": {
+                "lastRunDateTime": "2025-10-07T13:41:08.1366667Z",
+                "status": null,
+                "failureReason": null,
+                "errorCode": null
+            },
+            "detectionAction": {
+                "alertTemplate": {
+                    "title": "Wscript activity observed",
+                    "description": "Altough restricted by policy, wscript activity was observed. ",
+                    "severity": "medium",
+                    "category": "SuspiciousActivity",
+                    "recommendedActions": "Evaluate the execution, and determine if this is a policy violation from the user or an stager. ",
+                    "mitreTechniques": [],
+                    "impactedAssets": [
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedDeviceAsset",
+                            "identifier": "deviceId"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedUserAsset",
+                            "identifier": "accountSid"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedUserAsset",
+                            "identifier": "initiatingProcessAccountSid"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedMailboxAsset",
+                            "identifier": "accountUpn"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedMailboxAsset",
+                            "identifier": "initiatingProcessAccountUpn"
+                        }
+                    ]
+                },
+                "organizationalScope": {
+                    "scopeType": "deviceGroup",
+                    "scopeNames": [
+                        "UnassignedGroup",
+                        "TotallyNotFabricatedEndpoints"
+                    ]
+                },
+                "responseActions": []
+            }
+        },
+        {
+            "detectorId": "490fa8ce-9b80-4e8e-ba06-2decbb40591e",
+            "id": "9251",
+            "displayName": "Malicious signed file",
+            "isEnabled": true,
+            "createdBy": "southalan@contoso.com",
+            "createdDateTime": "2025-09-16T16:13:14.4200905Z",
+            "lastModifiedDateTime": "2025-12-09T11:58:47.5180864Z",
+            "lastModifiedBy": "southalan@contoso.com",
+            "queryCondition": {
+                "queryText": "DeviceFileCertificateInfo\r\n| where Signer has_any (\"Brave Pragmatic Network\")",
+                "lastModifiedDateTime": "2025-12-09T11:58:47.5253893Z"
+            },
+            "schedule": {
+                "period": "1H",
+                "nextRunDateTime": "2025-12-15T12:51:15.9966667Z"
+            },
+            "lastRunDetails": {
+                "lastRunDateTime": "2025-12-15T11:51:15.9966667Z",
+                "status": "completed",
+                "failureReason": null,
+                "errorCode": null
+            },
+            "detectionAction": {
+                "organizationalScope": null,
+                "alertTemplate": {
+                    "title": "Malicious signed file (TI)",
+                    "description": "This rule observes a file that is signed with a malicious certificate, observed by TI. ",
+                    "severity": "high",
+                    "category": "DefenseEvasion",
+                    "recommendedActions": "Determine the origin of the file. ",
+                    "mitreTechniques": [],
+                    "impactedAssets": [
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedDeviceAsset",
+                            "identifier": "deviceId"
+                        }
+                    ]
+                },
+                "responseActions": []
+            }
+        },
+        {
+            "detectorId": "fbbc79c5-4b47-4a02-beed-4277f30bae65",
+            "id": "8180",
+            "displayName": "PowerShell Security cmdlet use",
+            "isEnabled": true,
+            "createdBy": "southalan@contoso.com",
+            "createdDateTime": "2025-10-07T14:10:46.3556102Z",
+            "lastModifiedDateTime": "2025-12-09T11:58:00.2791625Z",
+            "lastModifiedBy": "southalan@contoso.com",
+            "queryCondition": {
+                "queryText": "DeviceEvents\r\n| where InitiatingProcessCommandLine has_any (\"mppreference\")",
+                "lastModifiedDateTime": "2025-12-09T11:58:00.3210878Z"
+            },
+            "schedule": {
+                "period": "0",
+                "nextRunDateTime": "2025-10-07T14:10:46.4333333Z"
+            },
+            "lastRunDetails": {
+                "lastRunDateTime": "2025-10-07T14:10:46.4333333Z",
+                "status": null,
+                "failureReason": null,
+                "errorCode": null
+            },
+            "detectionAction": {
+                "alertTemplate": {
+                    "title": "PowerShell Security cmdlet use",
+                    "description": "An instruction using the security cmdlet was called in the endpoint.",
+                    "severity": "medium",
+                    "category": "Exploit",
+                    "recommendedActions": "Determine the root cause of this activity.",
+                    "mitreTechniques": [],
+                    "impactedAssets": [
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedDeviceAsset",
+                            "identifier": "deviceName"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedDeviceAsset",
+                            "identifier": "remoteDeviceName"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedUserAsset",
+                            "identifier": "accountSid"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedUserAsset",
+                            "identifier": "initiatingProcessAccountSid"
+                        },
+                        {
+                            "@odata.type": "#microsoft.graph.security.impactedMailboxAsset",
+                            "identifier": "initiatingProcessAccountUpn"
+                        }
+                    ]
+                },
+                "organizationalScope": {
+                    "scopeType": "deviceGroup",
+                    "scopeNames": [
+                        "UnassignedGroup",
+                        "RandomDevices"
+                    ]
+                },
+                "responseActions": []
+            }
+        }
+    ]
+}

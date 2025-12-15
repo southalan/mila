@@ -16,7 +16,7 @@ pip install -r /path/to/requirements.txt
 # Validate that everything is okay with the "SampleInput.txt" (These are 3 randomly created rules)
 python3 DrawerGraphicator.py SampleInput.txt
 # The results will be 4 files.
-# 3, are .txt files that are valid .KQL script files. They will be later used on a project that I'm developing.
+# 3, are .txt files that are valid .KQL script files. They will be later used on a project that I'm developing, so stay tuned. If you are astute, you will notice that you can use them to have a small repository of your DetectionRules as displayName, Id, QueryText in a human readable format. Handy if you have >200 rules.  
 # 1, is an .html files with graphics giving you some insights about your detections. 
 ```
 

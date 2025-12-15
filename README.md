@@ -6,7 +6,7 @@ My Ill Lackers in Azure
 
 ## Purpose
 
-This is a python script that leverages plotly and tabulate to give you a small graphical report of your Advanced Hunting rules. 
+DrawerGraphicator.py -> This is a python script that leverages plotly and tabulate to give you a small graphical report of your Advanced Hunting rules. 
 
 ## How to use?
 
@@ -32,3 +32,31 @@ Make sure you are:
 5) Run python3 DrawerGraphicator.py MyDetections.txt
 ```
 
+## This is cool, but I need "x" or want to add "y", how do I request/contribute?
+
+```
+These are the current options: 
+-> Raise me an issue describing your use case or situation, and I'll if I can develop it. 
+-> Create the graphic that you want me to add, and I'll merge it with the codebase.
+-> Report an issue as a bugfix, and I'll get right into it. 
+```
+
+## RoadMap
+
+```
+-> (DrawerGraphicator.py) Improve the args[] and give you more space for customization (Ex: Disable certain graphs, change certain units, etc)
+-> (DrawerGraphicator.py) Get a better handle of unusual queries (Those that use \r \n or RegEx themselves, and parse them correctly) 
+-> (Upcoming) .KQL automation so you can run your AH files for automated detection testing.
+```
+
+## Example, Figure 1
+
+Comparison of Enabled/Disabled rule count
+
+<img width="1887" height="913" alt="newplot(1)" src="https://github.com/user-attachments/assets/f860548d-54c5-4e38-984d-4e213dec301b" />
+
+## Example, Figure 5
+
+Rule creation per quarter, last 2 years.
+
+<img width="1887" height="913" alt="newplot(4)" src="https://github.com/user-attachments/assets/1bfbdb00-2f8c-45d1-ac2e-b9236ffc5780" />
